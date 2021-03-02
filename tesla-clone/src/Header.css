@@ -1,0 +1,5 @@
+.header__logoImg{
+  object-fit: contain;
+  width: 90px;
+  margin-right: 100px;
+}

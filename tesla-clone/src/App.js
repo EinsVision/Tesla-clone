@@ -1,13 +1,17 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
+import Header from './Header';
 
 function App() {
   return (
-    <div className="app">
-      <h2>Tesla Clone</h2>
-      {/* Header */}
-      {/* HeaderBlock */}
-    </div>
+    <Router>
+      <div className="app">
+        <Header />
+        {/* HeaderBlock */}
+      </div>
+    </Router>
+    
   );
 }
 
