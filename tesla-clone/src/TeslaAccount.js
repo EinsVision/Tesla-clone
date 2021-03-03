@@ -1,17 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './TeslaAccount.css';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
-import { useSelector } from 'react-redux';
-import { selectUser } from './features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, selectUser } from './features/userSlice';
 import Car from './Car';
+import { auth } from './firebase';
 
 function TeslaAccount({ isMenuOpen, setIsMenuOpen }) {
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const logoutOfApp = () => {
-    
-  }
+    auth
+    .signOut()
+    .then(() => {
+      dispatch(logout())
+      history.push('/')
+    })
+    .catch((error) => alert(error.message));
+  };
   return (
     <div className='teslaAccount'>
       <div className="teslaAccount__header">
@@ -74,3 +83,4 @@ function TeslaAccount({ isMenuOpen, setIsMenuOpen }) {
 }
 
 export default TeslaAccount
+// 3: 32

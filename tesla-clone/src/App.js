@@ -1,18 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
-import { selectUser } from './features/userSlice';
+import { login, logout, selectUser } from './features/userSlice';
 import Header from './Header';
 import HeaderBlock from './HeaderBlock';
 import Login from './Login';
 import Menu from './Menu';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Signup from './Signup';
 import TeslaAccount from './TeslaAccount';
+import { auth } from './firebase';
 
 function App() {
   const user = useSelector(selectUser);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((userAuth) => {
+      if (userAuth) {
+        // User is signed in
+        dispatch(
+          login({
+            email: userAuth.email,
+            uid: userAuth.uid,
+            displayName: userAuth.displayName,
+          })
+        )
+      } else {
+        // User is signed out
+        dispatch(logout())
+      }
+    })
+  }, [dispatch])
 
   return (
     <Router>
