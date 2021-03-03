@@ -8,6 +8,7 @@ import Login from './Login';
 import Menu from './Menu';
 import { useSelector } from 'react-redux';
 import Signup from './Signup';
+import TeslaAccount from './TeslaAccount';
 
 function App() {
   const user = useSelector(selectUser);
@@ -32,7 +33,15 @@ function App() {
           </Route>  
 
           <Route exact path='/teslaaccount'>
-            <Signup />
+            {!user ? (
+              <Redirect to='/login'/>
+              ) : (
+                <>
+                  <TeslaAccount isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
+                  {isMenuOpen && <Menu />}
+                </>
+                
+            )}
           </Route>  
 
         </Switch>        
