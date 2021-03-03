@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import './App.css';
 import Header from './Header';
 import HeaderBlock from './HeaderBlock';
+import Login from './Login';
 import Menu from './Menu';
 
 function App() {
@@ -12,11 +13,16 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
-        {isMenuOpen && <Menu />}
-
-        <HeaderBlock/>
-        
+        <Switch>
+          <Route exact path='/'>
+            <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
+            {isMenuOpen && <Menu />}
+            <HeaderBlock/>
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>  
+        </Switch>        
       </div>
     </Router>
     
