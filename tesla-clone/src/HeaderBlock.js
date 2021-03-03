@@ -7,13 +7,13 @@ function HeaderBlock() {
     <div className='headerBlock'>
       <div className="headerBlock__info">
         <div className="headerBlock__infoText">
-          <Fade top> 
+          <Fade top > 
             <h1>Model 3</h1>
+            <h4>
+              Order Online for <span>Touchless Delivery</span>
+            </h4>
           </Fade>
           
-          <h4>
-            Order Online for <span>Touchless Delivery</span>
-          </h4>
         </div>
         <div className="headerBlock__actions">
           <Fade left delay={300}>
