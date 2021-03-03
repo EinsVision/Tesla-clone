@@ -10,7 +10,7 @@ import Car from './Car';
 function TeslaAccount({ isMenuOpen, setIsMenuOpen }) {
   const user = useSelector(selectUser);
   const logoutOfApp = () => {
-
+    
   }
   return (
     <div className='teslaAccount'>
@@ -50,12 +50,12 @@ function TeslaAccount({ isMenuOpen, setIsMenuOpen }) {
         <div className="teslaAccount__person">
           <h4>{user?.displayName + "'s"}</h4>
         </div>
-        <div className="teslaAccount__infoRight">
+        {/* <div className="teslaAccount__infoRight">
           <Link>Home</Link>
           <Link>Account</Link>
           <Link>History</Link>
           <Link onClick={logoutOfApp}>Sign Out</Link>
-        </div>
+        </div> */}
       </div>
 
       <div className="teslaAccount__car">
