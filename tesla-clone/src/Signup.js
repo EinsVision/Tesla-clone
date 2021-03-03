@@ -5,6 +5,8 @@ import './Signup.css';
 import LanguageIcon from '@material-ui/icons/Language';
 import ButtonPrimary from './ButtonPrimary';
 import ButtonSecondary from './ButtonSecondary';
+import { auth } from './firebase';
+import { login } from './features/userSlice';
 
 function Signup() {
   const [email, setEmail] = useState('');
@@ -13,6 +15,33 @@ function Signup() {
   const [lName, setLName] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const signUp = (e) => {
+    e.preventDefault();
+
+    if(!fName) {
+      return alert('Please enter a first name')
+    }
+
+    if(!lName) {
+      return alert('Please enter a last name')
+    }
+
+    auth.createUserWithEmailAndPassword(email, password)
+    .then((userAuth) => {
+      userAuth.user.updateProfile({
+        displayName: fName + lName
+      })
+      .then(() => {
+        dispatch(login({
+          email: userAuth.user.email,
+          uid: userAuth.user.uid,
+          displayName: fName + lName,
+        }))
+        history.push('/teslaaccount');
+      })
+    }).catch((error) => alert(error.message))
+  }
   
   return (
     <div className='signup'>
@@ -31,7 +60,7 @@ function Signup() {
       </div>
 
       <div className="signup__info">
-        <h1>Sign up</h1>
+        <h1>Create Account</h1>
         <form className='signup__form'>
           <label htmlFor="fName">First Name</label>
           <input 
@@ -61,21 +90,19 @@ function Signup() {
             value={password} 
             onChange={(e) => setPassword(e.target.value)}
           />
-          <ButtonPrimary name='Create account' type='submit' />
+          <ButtonPrimary name='Create account' type='submit' onClick={signUp}/>
         </form>
         <div className="signup__divider">
           <hr /> <span>OR</span> <hr />
         </div>
 
         <Link to='/login'>
-          <ButtonSecondary name='Sign in' type='submit' />
+          <ButtonSecondary name='Sign in'/>
         </Link>
       </div>
-      
     </div>
   )
 }
 
 export default Signup
 
-// 2:30

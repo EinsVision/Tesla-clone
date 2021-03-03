@@ -67,7 +67,7 @@ function Login() {
         </div>
 
         <Link to='/signup'>
-          <ButtonSecondary name='Create account' type='submit' onClick={signIn}/>
+          <ButtonSecondary name='Create account' />
         </Link>
       </div>
     </div>

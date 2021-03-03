@@ -23,13 +23,18 @@ function App() {
             <HeaderBlock/>
           </Route>
 
-          <Route path='/login'>
+          <Route exact path='/login'>
             {user ? <Redirect to='/teslaaccount'/> : <Login />}
           </Route>  
 
-          <Route path='/signup'>
+          <Route exact path='/signup'>
             <Signup />
           </Route>  
+
+          <Route exact path='/teslaaccount'>
+            <Signup />
+          </Route>  
+
         </Switch>        
       </div>
     </Router>
