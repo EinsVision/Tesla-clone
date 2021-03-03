@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import Header from './Header';
+import Menu from './Menu';
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
     <Router>
       <div className="app">
         <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
-        {/* HeaderBlock */}
+        {isMenuOpen && <Menu />}
       </div>
     </Router>
     
