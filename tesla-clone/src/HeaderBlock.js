@@ -2,13 +2,20 @@ import React from 'react';
 import './HeaderBlock.css';
 import Fade from 'react-reveal/Fade';
 
-function HeaderBlock() {
+function HeaderBlock({model, img}) {
   return (
-    <div className='headerBlock'>
+    <div className='headerBlock' style={{
+      backgroundImage: `url(${img})`, 
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed'
+      
+    }}>
       <div className="headerBlock__info">
         <div className="headerBlock__infoText">
           <Fade top > 
-            <h1>Model 3</h1>
+            <h1>{model}</h1>
             <h4>
               Order Online for <span>Touchless Delivery</span>
             </h4>
