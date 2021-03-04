@@ -10,7 +10,6 @@ function HeaderBlock({model, img}) {
       backgroundPosition: 'center',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed'
-      
     }}>
       <div className="headerBlock__info">
         <div className="headerBlock__infoText">
